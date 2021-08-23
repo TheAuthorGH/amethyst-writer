@@ -1,0 +1,13 @@
+{
+  "name": "amethyst-writer",
+  "version": "1.0.0",
+  "description": "Amethyst Writer monorepo",
+  "scripts": {
+    "start:desktop": "lerna run start --scope=@amethyst-writer/desktop"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
+}
