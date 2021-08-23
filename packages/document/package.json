@@ -1,0 +1,17 @@
+{
+  "name": "@amethyst-writer/document",
+  "version": "1.0.0",
+  "description": "Amethyst Writer document library",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc --project ./tsconfig.json"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "uuid": "^8.3.2"
+  }
+}
