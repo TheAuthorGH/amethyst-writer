@@ -1,0 +1,22 @@
+{
+  "name": "@amethyst-writer/desktop",
+  "version": "1.0.0",
+  "description": "Amethyst Writer electron-based desktop frontend",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "electron dist/index.js",
+    "build": "tsc --project ./tsconfig.json && cp src/index.html dist/index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@amethyst-writer/document": "^1.0.0",
+    "@amethyst-writer/ui": "0.0.1",
+    "electron": "^13.1.9",
+    "html-pdf": "^3.0.1"
+  },
+  "devDependencies": {
+    "electron": "^13.1.9",
+    "typescript": "^4.3.5"
+  }
+}
