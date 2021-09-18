@@ -5,18 +5,46 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "electron dist/index.js",
-    "build": "tsc --project ./tsconfig.json && cp src/index.html dist/index.html"
+    "build": "tsc --project ./tsconfig.json && cp src/index.html dist/index.html",
+    "package:linux": "npm run build && electron-builder -l",
+    "package:windows": "npm run build && electron-builder -w"
   },
-  "author": "",
+  "author": {
+    "name": "TBD",
+    "email": "tbd@tbd.tbd"
+  },
+  "homepage": "https://tbd.tbd/",
   "license": "ISC",
   "dependencies": {
-    "@amethyst-writer/document": "^1.0.0",
-    "@amethyst-writer/ui": "0.0.1",
-    "electron": "^13.1.9",
-    "html-pdf": "^3.0.1"
+    "@amethyst-writer/document": "1.0.0",
+    "@amethyst-writer/ui": "0.0.1"
   },
   "devDependencies": {
-    "electron": "^13.1.9",
+    "electron": "^13.2.2",
+    "electron-builder": "^22.11.7",
     "typescript": "^4.3.5"
+  },
+  "build": {
+    "appId": "com.electron.app",
+    "productName": "Amethyst Writer",
+    "directories": {
+      "output": "./dist/packages"
+    },
+    "files": [
+      "./dist/**/*.js",
+      "./dist/index.html"
+    ],
+    "linux": {
+      "executableName": "amethyst",
+      "artifactName": "${productName}-${version}.${ext}",
+      "target": "AppImage"
+    },
+    "win": {
+      "target": "portable"
+    },
+    "portable": {
+      "unicode": false,
+      "artifactName": "${productName}-${version}.${ext}"
+    }
   }
 }
