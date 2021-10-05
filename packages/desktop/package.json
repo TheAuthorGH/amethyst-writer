@@ -37,10 +37,10 @@
     "linux": {
       "executableName": "amethyst",
       "artifactName": "${productName}-${version}.${ext}",
-      "target": "AppImage"
+      "target": [ "AppImage", "deb" ]
     },
     "win": {
-      "target": "portable"
+      "target": [ "portable" ]
     },
     "portable": {
       "unicode": false,
