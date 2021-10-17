@@ -1,0 +1,25 @@
+{
+  "name": "@amethyst-writer/ui",
+  "version": "0.0.1",
+  "description": "Amethyst Writer web-based user interface components",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "npm run build:themes && webpack --mode=development",
+    "build:themes": "node ./scripts/build-themes.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@amethyst-writer/document": "^1.0.0",
+    "@vue/compiler-sfc": "^3.2.2",
+    "css-loader": "^6.2.0",
+    "mini-css-extract-plugin": "^2.2.0",
+    "sass": "^1.37.5",
+    "sass-loader": "^12.1.0",
+    "vue": "^3.2.2",
+    "vue-loader": "^16.5.0",
+    "vue-style-loader": "^4.1.3",
+    "webpack": "^5.50.0",
+    "webpack-cli": "^4.7.2"
+  }
+}

@@ -1,0 +1,79 @@
+// TODO: How can we make the imported fonts configurable?
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap');
+
+:root {
+  font-size: 10px;
+}
+
+body {
+  height: 100vh;
+  font-size: 1.6rem;
+}
+
+#app {
+  height: 100%;
+}
+
+/* TODO: Should these be moved to its own file? */
+h3 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 1.2rem 0;
+}
+
+button {
+  padding: 0.6rem 1rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+  border: var(--accent-dark) 2px solid;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: var(--accent-darker);
+  white-space: nowrap;
+  transition: background-color, border-color 0.1s ease-out;
+
+  &:hover,
+  &:focus {
+    border-color: var(--accent-light);
+    outline: 0;
+  }
+
+  &:active,
+  &.selected {
+    background-color: var(--accent-dark);
+    cursor: default;
+  }
+}
+
+select {
+  padding: 0.6rem 1rem;
+  font-size: 1.4rem;
+  border: var(--accent-dark) 2px solid;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color, border-color 0.1s ease-out;
+
+  &:hover,
+  &:focus {
+    border-color: var(--accent-light);
+    outline: 0;
+  }
+}
+
+input,
+textarea {
+  padding: 0.8rem;
+  outline: 0;
+  border: var(--accent-dark) 2px solid;
+  border-radius: 4px;
+  transition: background-color, border-color 0.1s ease-out;
+
+  &:hover,
+  &:focus {
+    border-color: var(--accent-light);
+  }
+}

@@ -1,0 +1,13 @@
+$accent-dark: #3f3d4d;
+$accent-darker: darken($accent-dark, 9%);
+$accent-light: lighten(#a88fac, 14%);
+
+// TODO: These should also include font vars
+.theme--amethyst {
+  font-family: 'Open Sans', sans-serif;
+
+  --accent-darker: #{$accent-darker};
+  --accent-dark: #{$accent-dark};
+  --accent-light: #{$accent-light};
+  --box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+}
