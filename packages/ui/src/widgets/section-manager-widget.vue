@@ -5,6 +5,7 @@
     <ul>
       <li
         v-for="section in sections"
+        :key="section.uuid"
       >
         <button
           class="section-button"
@@ -30,7 +31,7 @@
       placeholder="Name the current section"
       title="Name the current section"
       @input="setCurrentSectionTitle($event.target.value)"
-    />
+    >
 
     <button
       @click="createNewSection(`Chapter ${currentDocument.sections.length + 1}`)"
@@ -60,11 +61,9 @@ export default {
 
     const sections = computed(() => getOrderedSections(currentDocument.value.sections));
 
-    const getSectionButtonClasses = (section) => {
-      return {
-        'selected': currentSectionUuid.value === section.uuid
-      };
-    };
+    const getSectionButtonClasses = (section) => ({
+      'selected': currentSectionUuid.value === section.uuid
+    });
 
     const deleteSection = (sectionUuid) => {
       // TODO: Improve warning prompt
@@ -107,7 +106,7 @@ export default {
       getSectionButtonClasses,
       deleteSection,
       setCurrentSectionTitle
-    }
+    };
   }
 };
 </script>

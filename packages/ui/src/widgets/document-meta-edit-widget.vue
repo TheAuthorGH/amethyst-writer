@@ -6,7 +6,7 @@
       <input
         :value="currentDocument.title"
         @input="updateTitle($event.target.value)"
-      />
+      >
     </div>
   </div>
 </template>

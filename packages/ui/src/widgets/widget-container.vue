@@ -2,16 +2,17 @@
   <div class="widget-container">
     <div
       v-for="(row, rowIndex) in rows"
+      :key="rowIndex"
       class="row"
       :class="getRowClasses(row)"
     >
-      <template v-for="widget in getRowWidgets(rowIndex)">
-        <component
-          :is="getWidgetComponent(widget)"
-          :class="getWidgetClasses(widget)"
-          v-bind="widget.props || {}"
-        />
-      </template>
+      <component
+        :is="getWidgetComponent(widget)"
+        v-for="(widget, widgetIndex) in getRowWidgets(rowIndex)"
+        :key="widgetIndex"
+        :class="getWidgetClasses(widget)"
+        v-bind="widget.props || {}"
+      />
     </div>
   </div>
 </template>
@@ -22,22 +23,16 @@ import { widgets } from './index';
 export default {
   props: {
     widgets: { type: Array, required: true },
-    rows: { type: Array, default: [ { height: 1 } ] }
+    rows: { type: Array, default: () => [ { height: 1 } ] }
   },
   setup(props) {
-    const getWidgetComponent = (widget) => {
-      return widgets[widget.type];
-    };
+    const getWidgetComponent = (widget) => widgets[widget.type];
 
-    const getRowWidgets = (rowIndex) => {
-      return props.widgets.filter((widget) => widget.layout.row === rowIndex);
-    };
+    const getRowWidgets = (rowIndex) => props.widgets.filter((widget) => widget.layout.row === rowIndex);
 
-    const getRowClasses = (row) => {
-      return {
-        'row--greedy-height': row.greedyHeight
-      };
-    };
+    const getRowClasses = (row) => ({
+      'row--greedy-height': row.greedyHeight
+    });
 
     const getWidgetClasses = (widget) => {
       const layoutOptions = widget.layout || {};

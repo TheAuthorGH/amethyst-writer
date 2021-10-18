@@ -16,9 +16,7 @@ export default {
   setup() {
     const { currentDocument, currentSectionUuid  } = useDocuments();
 
-    const previewHtml = computed(() => renderNodesToHtml(
-      currentDocument.value.nodes.filter((node) => node.sectionUuid === currentSectionUuid.value)
-    ));
+    const previewHtml = computed(() => renderNodesToHtml(currentDocument.value.nodes.filter((node) => node.sectionUuid === currentSectionUuid.value)));
 
     return {
       previewHtml

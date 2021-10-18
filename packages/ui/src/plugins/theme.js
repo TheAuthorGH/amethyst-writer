@@ -27,7 +27,6 @@ export function installThemePlugin(app) {
     setThemeClass,
     addTheme
   });
-
 }
 
 export function useTheme() {

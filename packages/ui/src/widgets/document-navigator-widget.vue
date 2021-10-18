@@ -3,6 +3,7 @@
     <ul>
       <li
         v-for="document in documents"
+        :key="document.uuid"
       >
         <button
           :class="getDocumentButtonClasses(document)"
@@ -33,11 +34,9 @@ export default {
       createNewDocument
     } = useDocuments();
 
-    const getDocumentButtonClasses = (document) => {
-      return {
-        'selected': document.uuid === currentDocumentUuid.value
-      };
-    };
+    const getDocumentButtonClasses = (document) => ({
+      'selected': document.uuid === currentDocumentUuid.value
+    });
 
     return {
       documents,

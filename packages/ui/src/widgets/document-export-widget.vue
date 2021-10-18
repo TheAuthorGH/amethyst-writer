@@ -25,5 +25,5 @@ export default {
       exportToPdf
     };
   }
-}
+};
 </script>

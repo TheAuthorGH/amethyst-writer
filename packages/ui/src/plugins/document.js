@@ -1,7 +1,7 @@
 import { ref, computed, readonly, inject } from 'vue';
 
 import { createDocument, createSection } from '@amethyst-writer/document';
-import { documentSymbol, sectionSymbol } from './injection-symbols';
+import { documentSymbol } from './injection-symbols';
 
 export function installDocumentPlugin(app) {
   const documentsByUuid = ref({});
@@ -58,9 +58,7 @@ export function installDocumentPlugin(app) {
   // TODO: Everything below this point could be separated.
   const currentSectionUuid = ref(null);
 
-  const currentSection = computed(() => {
-    return currentDocument.value.sections.find((section) => section.uuid === currentSectionUuid.value)
-  });
+  const currentSection = computed(() => currentDocument.value.sections.find((section) => section.uuid === currentSectionUuid.value));
 
   const setCurrentSectionUuid = (uuid) => {
     currentSectionUuid.value = uuid;
@@ -72,7 +70,7 @@ export function installDocumentPlugin(app) {
       // TODO: Seriously reconsider if simply using array indexes would suffice,
       //  because nodes don't have any order property, which would simply be chaotic.
       order: currentDocument.value.sections.reduce(
-        (highest, section) => section.order > highest ? section.order : highest,
+        (highest, section) => (section.order > highest ? section.order : highest),
         0
       ) + 1
     };

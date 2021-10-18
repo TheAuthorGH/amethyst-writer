@@ -8,6 +8,7 @@
     >
       <option
         v-for="theme in themes"
+        :key="theme.class"
         :value="theme.class"
       >
         {{ theme.name }}

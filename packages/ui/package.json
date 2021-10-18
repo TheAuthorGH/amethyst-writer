@@ -5,14 +5,19 @@
   "main": "./dist/index.js",
   "scripts": {
     "build": "npm run build:themes && webpack --mode=development",
-    "build:themes": "node ./scripts/build-themes.js"
+    "build:themes": "node ./scripts/build-themes.js",
+    "lint:js": "eslint --config node_modules/@amethyst-writer/scripts/eslintrc.json --ext .js,.vue ./",
+    "fix:js": "eslint --config node_modules/@amethyst-writer/scripts/eslintrc.json --ext .js,.vue ./ --fix"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@amethyst-writer/document": "^1.0.0",
+    "@amethyst-writer/scripts": "^1.0.0",
     "@vue/compiler-sfc": "^3.2.2",
     "css-loader": "^6.2.0",
+    "eslint": "^8.0.1",
+    "eslint-plugin-vue": "^7.19.1",
     "mini-css-extract-plugin": "^2.2.0",
     "sass": "^1.37.5",
     "sass-loader": "^12.1.0",

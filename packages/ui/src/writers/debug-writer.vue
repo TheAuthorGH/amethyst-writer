@@ -1,7 +1,7 @@
 <template>
   <textarea
-    class="writer writer--debug-writer"
     v-model="textInput"
+    class="writer writer--debug-writer"
   />
 </template>
 
