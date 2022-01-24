@@ -9,12 +9,16 @@ export function parseNodesFromPlainText(source: string): DocumentNode[] {
         type: 'comment',
         text: content.trim().substring(2)
       };
-    } else if (content.startsWith('##')) {
+    }
+
+    if (content.startsWith('##')) {
       return {
         type: 'title-2',
         text: content.trim().substring(2)
       };
-    } else if (content.startsWith('#')) {
+    }
+
+    if (content.startsWith('#')) {
       return {
         type: 'title-1',
         text: content.trim().substring(1)
@@ -24,7 +28,7 @@ export function parseNodesFromPlainText(source: string): DocumentNode[] {
     const textParts = content.trim().split(/(?=[_])|(?<=[_])/g).filter(Boolean);
 
     // TODO: I hate myself for writing it like this. Need to get rid of imperative p.
-    let textNodes = [];
+    const textNodes = [];
     let inEmphasis = false;
 
     for (const textPart of textParts) {
@@ -35,7 +39,7 @@ export function parseNodesFromPlainText(source: string): DocumentNode[] {
         textNodes.push({
           type: 'text-emphasis',
           text: textPart
-        })
+        });
         continue;
       }
 

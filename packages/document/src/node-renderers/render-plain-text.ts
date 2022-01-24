@@ -4,7 +4,7 @@ import { DocumentNode } from '../document';
 const nodeTextGenerators: Record<string, (DocumentNode) => string> = {
   'title-1': (node) => `\n#${node.text}\n\n`,
   'title-2': (node) => `\n##${node.text}\n\n`,
-  'paragraph-end': () => '\n',
+  'paragraph-end': () => '\n\n',
   'text': (node) => node.text,
   'text-emphasis': (node) => `_${node.text}_`,
 
