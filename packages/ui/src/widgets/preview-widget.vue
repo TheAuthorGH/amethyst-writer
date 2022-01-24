@@ -38,7 +38,7 @@ export default {
     font-size: 2.2rem;
     font-family: 'EB Garamond', serif;
     font-weight: 500;
-    max-width: 38rem;
+    max-width: 44rem;
     width: 100%;
     height: auto;
     margin-left: auto;
