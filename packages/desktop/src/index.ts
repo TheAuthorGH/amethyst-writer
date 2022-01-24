@@ -1,7 +1,7 @@
 import path from 'path';
 import { app, BrowserWindow, ipcMain } from 'electron';
 
-import { exportDocumentToPdf } from './document-exporters';
+import { exportDocumentToPdf, exportDocumentToJson } from './document-exporters';
 
 async function createWindow(): Promise<void> {
   const window = new BrowserWindow({
@@ -24,7 +24,8 @@ app.whenReady().then(createWindow);
 // TODO: Move this.
 ipcMain.on('exportDocument', (event, payload) => {
   const methods = {
-    pdf: exportDocumentToPdf
+    pdf: exportDocumentToPdf,
+    json: exportDocumentToJson
   };
 
   methods[payload.strategy](payload.document);

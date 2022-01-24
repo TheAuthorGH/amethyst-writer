@@ -5,6 +5,10 @@
     <button @click="exportToPdf()">
       + PDF
     </button>
+
+    <button @click="exportToJson()">
+      + JSON
+    </button>
   </div>
 </template>
 
@@ -21,8 +25,15 @@ export default {
       window._amethyst.exportDocument(document, 'pdf');
     };
 
+    const exportToJson = async () => {
+      // TODO: How to do it without this hack?
+      const document = JSON.parse(JSON.stringify(currentDocument.value));
+      window._amethyst.exportDocument(document, 'json');
+    };
+
     return {
-      exportToPdf
+      exportToPdf,
+      exportToJson
     };
   }
 };
