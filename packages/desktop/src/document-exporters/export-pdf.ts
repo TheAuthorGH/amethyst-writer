@@ -28,9 +28,19 @@ export async function exportDocumentToPdf(document: Document): Promise<void> {
     <html lang="en">
       <head>
         <style>
+          /* TODO: make imported font configurable and unique */
+          @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+
           body {
-            background-color: rgb(239, 233, 217);
-            color: rgb(67, 48, 36);
+            background-color: rgb(249, 249, 249);
+            color: rgb(16, 16, 16);
+            font-family: 'EB Garamond', sans-serif;
+            line-height: 32px;
+          }
+
+          .content {
+            margin: auto;
+            max-width: 500px;
           }
 
           h1 {
@@ -58,7 +68,9 @@ export async function exportDocumentToPdf(document: Document): Promise<void> {
       </head>
 
       <body>
-        ${sectionsHtml}
+        <div class="content">
+          ${sectionsHtml}
+        </div>
       </body>
     </html>
   `;
