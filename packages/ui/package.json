@@ -6,14 +6,16 @@
   "scripts": {
     "build": "npm run build:themes && webpack --mode=development",
     "build:themes": "node ./scripts/build-themes.js",
-    "lint:js": "eslint --config node_modules/@amethyst-writer/scripts/eslintrc.json --ext .js,.vue ./",
-    "fix:js": "eslint --config node_modules/@amethyst-writer/scripts/eslintrc.json --ext .js,.vue ./ --fix"
+    "lint:js": "eslint --config node_modules/@amethyst-writer/scripts/eslintrc-vue.json --ext .js,.vue ./src",
+    "fix:js": "eslint --config node_modules/@amethyst-writer/scripts/eslintrc-vue.json --ext .js,.vue ./src --fix"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@amethyst-writer/document": "^1.0.0",
     "@amethyst-writer/scripts": "^1.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
     "@vue/compiler-sfc": "^3.2.2",
     "css-loader": "^6.2.0",
     "eslint": "^8.0.1",
@@ -21,6 +23,7 @@
     "mini-css-extract-plugin": "^2.2.0",
     "sass": "^1.37.5",
     "sass-loader": "^12.1.0",
+    "typescript": "^4.5.5",
     "vue": "^3.2.2",
     "vue-loader": "^16.5.0",
     "vue-style-loader": "^4.1.3",

@@ -10,4 +10,5 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run: npx lerna bootstrap
+      - run: npx lerna run lint:js
       - run: npx lerna run build

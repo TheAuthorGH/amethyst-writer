@@ -7,7 +7,7 @@ export async function exportDocumentToJson(document: Document) {
   const file = await dialog.showSaveDialog({
     title: 'Export document to JSON',
     filters: [
-      { name: 'JSON', extensions: [ 'json' ]}
+      { name: 'JSON', extensions: [ 'json' ] }
     ],
     defaultPath: `${document.title}.json`
   });

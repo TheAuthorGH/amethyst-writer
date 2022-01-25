@@ -5,11 +5,7 @@
     "es6": true
   },
   "extends": [
-    "plugin:vue/recommended",
     "eslint:recommended"
-  ],
-  "plugins": [
-    "vue"
   ],
   "globals": {
     "Atomics": "readonly",
@@ -64,16 +60,6 @@
     "space-before-function-paren": [ "error", { "anonymous": "always", "named": "never", "asyncArrow": "always" } ],
     "space-in-parens": [ "error", "never" ],
     "switch-colon-spacing": [ "error", { "after": true, "before": false } ],
-    "camelcase": [ "error", { "properties": "never" } ],
-
-    "vue/multiline-html-element-content-newline": [ "error", {
-      "ignoreWhenEmpty": false,
-      "ignores": [],
-      "allowEmptyLines": false
-    }],
-    "vue/require-default-prop": [ "off" ],
-    "vue/no-multiple-template-root": [ "off" ],
-    "vue/no-v-for-template-key": [ "off" ],
-    "vue/no-v-html": [ "off" ]
+    "camelcase": [ "error", { "properties": "never" } ]
   }
 }

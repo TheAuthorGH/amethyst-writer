@@ -1,0 +1,30 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "extends": [
+    "./eslintrc-ts.json",
+    "plugin:vue/recommended"
+  ],
+  "plugins": [
+    "vue"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "ignorePatterns": [ "node_modules/", "test/", "dist/", "webpack*.js" ],
+  "rules": {
+    "vue/multiline-html-element-content-newline": [ "error", {
+      "ignoreWhenEmpty": false,
+      "ignores": [],
+      "allowEmptyLines": false
+    }],
+    "vue/require-default-prop": [ "off" ],
+    "vue/no-multiple-template-root": [ "off" ],
+    "vue/no-v-for-template-key": [ "off" ],
+    "vue/no-v-html": [ "off" ]
+  }
+}

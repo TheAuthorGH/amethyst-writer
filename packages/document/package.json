@@ -4,11 +4,17 @@
   "description": "Amethyst Writer document library",
   "main": "./dist/index.js",
   "scripts": {
-    "build": "tsc --project ./tsconfig.json"
+    "build": "tsc --project ./tsconfig.json",
+    "lint:js": "eslint --config node_modules/@amethyst-writer/scripts/eslintrc-ts.json --ext .js,.ts ./src",
+    "fix:js": "eslint --config node_modules/@amethyst-writer/scripts/eslintrc-ts.json --ext .js,.ts ./src --fix"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@amethyst-writer/scripts": "1.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
+    "eslint": "^8.0.1",
     "typescript": "^4.3.5"
   },
   "dependencies": {

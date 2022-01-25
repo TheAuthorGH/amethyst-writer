@@ -8,7 +8,7 @@ export async function exportDocumentToPdf(document: Document): Promise<void> {
   const file = await dialog.showSaveDialog({
     title: 'Export document to PDF',
     filters: [
-      { name: 'PDFs', extensions: [ 'pdf' ]}
+      { name: 'PDFs', extensions: [ 'pdf' ] }
     ],
     defaultPath: `${document.title}.pdf`
   });
