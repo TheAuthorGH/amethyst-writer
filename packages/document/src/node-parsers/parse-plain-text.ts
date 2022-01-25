@@ -1,5 +1,4 @@
-// TODO: Use alias
-import { DocumentNode } from '../document';
+import { DocumentNode } from '@src/document';
 
 export function parseNodesFromPlainText(source: string): DocumentNode[] {
   // TODO: Could this be done with a single, beautiful regex?

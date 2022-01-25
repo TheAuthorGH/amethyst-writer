@@ -8,6 +8,10 @@
     "moduleResolution": "node",
     "target": "es2019",
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": [ "./src/*" ]
+    }
   }
 }

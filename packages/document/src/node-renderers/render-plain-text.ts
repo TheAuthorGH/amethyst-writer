@@ -1,5 +1,4 @@
-// TODO: Use alias
-import { DocumentNode } from '../document';
+import { DocumentNode } from '@src/document';
 
 const nodeTextGenerators: Record<string, (DocumentNode) => string> = {
   'title-1': (node) => `\n#${node.text}\n\n`,
