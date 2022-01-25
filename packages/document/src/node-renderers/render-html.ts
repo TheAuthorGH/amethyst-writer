@@ -1,4 +1,4 @@
-import { DocumentNode } from '../document';
+import { DocumentNode } from '@src/document';
 
 const nodeHtmlGenerators: Record<string, (DocumentNode) => string> = {
   'title-1': (node) => `<h1>${node.text}</h1>`,

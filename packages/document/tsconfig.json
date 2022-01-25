@@ -4,6 +4,7 @@
   ],
   "compilerOptions": {
     "outDir": "./dist/",
+    "rootDirs": [ "./src", "./tests" ],
     "module": "CommonJS",
     "moduleResolution": "node",
     "target": "es2019",
@@ -13,5 +14,13 @@
     "paths": {
       "@src/*": [ "./src/*" ]
     }
-  }
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "./node_modules",
+    "./tests",
+    "./dist"
+  ]
 }
