@@ -1,4 +1,5 @@
-import { DocumentNode } from '@src/document';
+// TODO: Why can't we properly use aliases here without breaking other packages?
+import { DocumentNode } from '../document';
 
 const nodeTextGenerators: Record<string, (DocumentNode) => string> = {
   'title-1': (node) => `\n#${node.text}\n\n`,

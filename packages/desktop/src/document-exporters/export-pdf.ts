@@ -2,7 +2,7 @@ import fs from 'fs/promises';
 import { BrowserWindow } from 'electron';
 import { dialog } from 'electron';
 
-import { Document, renderNodesToHtml, getOrderedSections } from '@amethyst-writer/document/dist/index';
+import { Document, renderNodesToHtml, getOrderedSections } from '@amethyst-writer/document/dist';
 
 export async function exportDocumentToPdf(document: Document): Promise<void> {
   const file = await dialog.showSaveDialog({

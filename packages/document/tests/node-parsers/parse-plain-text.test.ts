@@ -1,4 +1,4 @@
-import { parseNodesFromPlainText } from '@src/node-parsers';
+import { parseNodesFromPlainText } from '../../src';
 
 describe('Plain Text Parser', () => {
   test('returns empty array when given empty string', () => {

@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import { dialog } from 'electron';
 
-import { Document } from '@amethyst-writer/document/dist/index';
+import { Document } from '@amethyst-writer/document/dist';
 
 export async function exportDocumentToJson(document: Document) {
   const file = await dialog.showSaveDialog({

@@ -6,14 +6,12 @@
     "outDir": "./dist/",
     "rootDirs": [ "./src", "./tests" ],
     "module": "CommonJS",
+    "declaration": true,
     "moduleResolution": "node",
     "target": "es2019",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "baseUrl": ".",
-    "paths": {
-      "@src/*": [ "./src/*" ]
-    }
+    "baseUrl": "."
   },
   "include": [
     "./src/**/*"
