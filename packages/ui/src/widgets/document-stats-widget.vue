@@ -8,13 +8,13 @@
   </div>
 </template>
 
-<script>
-import { computed } from 'vue';
+<script lang="ts">
+import { defineComponent, computed } from 'vue';
 import { getDocumentWordCount, getDocumentNodeTypeCount } from '@amethyst-writer/document/dist/index';
 
 import { useDocuments } from '@src/plugins';
 
-export default {
+export default defineComponent({
   setup() {
     const { currentDocument } = useDocuments();
     const wordCount = computed(() => getDocumentWordCount(currentDocument.value));
@@ -25,7 +25,7 @@ export default {
       paragraphCount
     };
   }
-};
+});
 </script>
 
 <style lang="scss">

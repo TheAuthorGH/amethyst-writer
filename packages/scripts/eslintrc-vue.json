@@ -4,9 +4,16 @@
     "node": true,
     "es6": true
   },
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser",
+    "sourceType": "module"
+  },
   "extends": [
-    "./eslintrc-ts.json",
-    "plugin:vue/recommended"
+    "./eslintrc.json",
+    "plugin:vue/vue3-recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "plugins": [
     "vue"
@@ -24,7 +31,6 @@
     }],
     "vue/require-default-prop": [ "off" ],
     "vue/no-multiple-template-root": [ "off" ],
-    "vue/no-v-for-template-key": [ "off" ],
     "vue/no-v-html": [ "off" ]
   }
 }

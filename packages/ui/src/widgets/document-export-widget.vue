@@ -12,10 +12,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
+
 import { useDocuments } from '@src/plugins';
 
-export default {
+export default defineComponent({
   setup() {
     const { currentDocument } = useDocuments();
 
@@ -36,5 +38,5 @@ export default {
       exportToJson
     };
   }
-};
+});
 </script>

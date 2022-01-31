@@ -12,14 +12,11 @@
   />
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import { useDocuments, useTheme } from '@src/plugins';
-import WidgetContainer from './widgets/widget-container.vue';
 
-export default {
-  components: {
-    WidgetContainer
-  },
+export default defineComponent({
   setup() {
     const { loadDocumentsState } = useDocuments();
     const { themeClass } = useTheme();
@@ -30,7 +27,7 @@ export default {
       themeClass
     };
   }
-};
+});
 </script>
 
 <style lang="scss">

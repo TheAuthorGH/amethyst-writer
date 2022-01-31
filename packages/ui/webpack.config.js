@@ -3,7 +3,7 @@ const { VueLoaderPlugin } = require('vue-loader');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'index.js'
@@ -15,12 +15,23 @@ module.exports = {
       '@dist': path.resolve(__dirname, 'dist')
     }
   },
+  stats: 'errors-only',
   module: {
     rules: [
-      // TODO: Add TS support
+      {
+        test: /\.ts$/,
+        loader: 'ts-loader',
+        options: {
+          appendTsSuffixTo: [/\.vue$/],
+        },
+        exclude: /node_modules/
+      },
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
+        options: {
+          esModule: true
+        }
       },
       {
         test: /\.(scss|css)$/,

@@ -6,13 +6,13 @@
   </div>
 </template>
 
-<script>
-import { computed } from 'vue';
+<script lang="ts">
+import { defineComponent, computed } from 'vue';
 
 import { useDocuments } from '@src/plugins';
 import { renderNodesToHtml } from '@amethyst-writer/document/dist/index';
 
-export default {
+export default defineComponent({
   setup() {
     const { currentDocument, currentSectionUuid  } = useDocuments();
 
@@ -22,7 +22,7 @@ export default {
       previewHtml
     };
   }
-};
+});
 </script>
 
 <style lang="scss">

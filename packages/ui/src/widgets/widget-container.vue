@@ -17,24 +17,41 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, PropType, defineComponent } from 'vue';
+
 import { widgets } from './index';
 
-export default {
+// TODO: Move this to general configuration package
+interface WidgetConfiguration {
+  type: string;
+  layout: {
+    row: number;
+    greedyWidth: boolean;
+    fullWidth: boolean;
+  };
+  props: object;
+}
+
+interface WidgetRowConfiguration {
+  greedyHeight: number;
+}
+
+export default defineComponent({
   props: {
-    widgets: { type: Array, required: true },
-    rows: { type: Array, default: () => [ { height: 1 } ] }
+    widgets: { type: Array as PropType<WidgetConfiguration[]>, required: true },
+    rows: { type: Array as PropType<WidgetRowConfiguration[]>, default: () => [ { height: 1 } ] }
   },
   setup(props) {
-    const getWidgetComponent = (widget) => widgets[widget.type];
+    const getWidgetComponent = (widget: WidgetConfiguration): Component => widgets[widget.type];
 
-    const getRowWidgets = (rowIndex) => props.widgets.filter((widget) => widget.layout.row === rowIndex);
+    const getRowWidgets = (rowIndex: number) => props.widgets.filter((widget) => widget.layout.row === rowIndex);
 
-    const getRowClasses = (row) => ({
+    const getRowClasses = (row: WidgetRowConfiguration) => ({
       'row--greedy-height': row.greedyHeight
     });
 
-    const getWidgetClasses = (widget) => {
+    const getWidgetClasses = (widget: WidgetConfiguration) => {
       const layoutOptions = widget.layout || {};
 
       return {
@@ -50,7 +67,7 @@ export default {
       getRowClasses
     };
   }
-};
+});
 </script>
 
 <style lang="scss">

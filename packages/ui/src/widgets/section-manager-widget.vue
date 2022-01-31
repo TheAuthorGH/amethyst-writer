@@ -41,14 +41,14 @@
   </div>
 </template>
 
-<script>
-import { computed } from 'vue';
+<script lang="ts">
+import { defineComponent, computed } from 'vue';
 
-import { getOrderedSections } from '@amethyst-writer/document/dist/index';
+import { DocumentSection, getOrderedSections } from '@amethyst-writer/document/dist';
 
 import { useDocuments } from '@src/plugins';
 
-export default {
+export default defineComponent({
   setup() {
     const {
       currentDocument,
@@ -61,11 +61,11 @@ export default {
 
     const sections = computed(() => getOrderedSections(currentDocument.value.sections));
 
-    const getSectionButtonClasses = (section) => ({
+    const getSectionButtonClasses = (section: DocumentSection) => ({
       'selected': currentSectionUuid.value === section.uuid
     });
 
-    const deleteSection = (sectionUuid) => {
+    const deleteSection = (sectionUuid: string) => {
       // TODO: Improve warning prompt
       if (!confirm('Really delete section? All content in section will be lost!')) {
         return;
@@ -82,7 +82,7 @@ export default {
       });
     };
 
-    const setCurrentSectionTitle = (title) => {
+    const setCurrentSectionTitle = (title: string) => {
       // TODO: I'm doing this twice!
       const remainingSections = currentDocument.value.sections.filter((section) => section.uuid !== currentSectionUuid.value);
 
@@ -108,7 +108,7 @@ export default {
       setCurrentSectionTitle
     };
   }
-};
+});
 </script>
 
 <style lang="scss">

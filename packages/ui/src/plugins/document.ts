@@ -1,21 +1,41 @@
-import { ref, computed, readonly, inject } from 'vue';
+import { App, Ref, ComputedRef, ref, computed, readonly, inject } from 'vue';
 
-import { createDocument, createSection } from '@amethyst-writer/document';
+import { Document, DocumentSection, createDocument, createSection } from '@amethyst-writer/document';
 import { documentSymbol } from './injection-symbols';
 
-export function installDocumentPlugin(app) {
-  const documentsByUuid = ref({});
-  const currentDocumentUuid = ref(null);
+interface DocumentPlugin {
+  documentsByUuid: Ref<Record<string, Document>>,
+  currentDocumentUuid: Ref<string>,
 
-  const documents = computed(() => Object.values(documentsByUuid.value));
-  const currentDocument = computed(() => documentsByUuid.value[currentDocumentUuid.value]);
+  currentDocument: ComputedRef<Document>,
+  documents: ComputedRef<Document[]>,
 
-  const setCurrentDocumentUuid = (uuid) => {
+  setCurrentDocumentUuid: (uuid: string) => void,
+  updateCurrentDocument: (updates: Partial<Document>) => void,
+  createNewDocument: () => void,
+  loadDocumentsState: () => void,
+
+  currentSectionUuid: Ref<string>,
+  currentSection: ComputedRef<DocumentSection>,
+  setCurrentSectionUuid: (uuid: string) => void,
+  createNewSection: (title: string) => void,
+}
+
+
+export function installDocumentPlugin(app: App): void {
+  const documentsByUuid = ref<Record<string, Document>>({});
+  // TODO: Really have this empty string at the start?
+  const currentDocumentUuid = ref('');
+
+  const documents = computed<Document[]>(() => Object.values(documentsByUuid.value));
+  const currentDocument = computed<Document>(() => documentsByUuid.value[currentDocumentUuid.value]);
+
+  const setCurrentDocumentUuid = (uuid: string): void => {
     currentDocumentUuid.value = uuid;
     setCurrentSectionUuid(currentDocument.value.sections[0].uuid);
   };
 
-  const updateCurrentDocument = (updates) => {
+  const updateCurrentDocument = (updates: Partial<Document>): void => {
     documentsByUuid.value = {
       ...documentsByUuid.value,
       [currentDocumentUuid.value]: { ...currentDocument.value, ...updates }
@@ -25,7 +45,7 @@ export function installDocumentPlugin(app) {
     saveDocumentsState();
   };
 
-  const createNewDocument = () => {
+  const createNewDocument = (): void => {
     const newDocument = createDocument();
 
     documentsByUuid.value = {
@@ -38,14 +58,14 @@ export function installDocumentPlugin(app) {
 
   // TODO: Clean this up
   // TODO: This is not saving the selected section.
-  const saveDocumentsState = () => {
+  const saveDocumentsState = (): void => {
     localStorage.setItem('documentsByUuid', JSON.stringify(documentsByUuid.value));
     localStorage.setItem('currentDocumentUuid', String(currentDocumentUuid.value));
   };
 
-  const loadDocumentsState = () => {
+  const loadDocumentsState = (): void => {
     documentsByUuid.value = JSON.parse(localStorage.getItem('documentsByUuid') || '{}');
-    currentDocumentUuid.value = localStorage.getItem('currentDocumentUuid') || null;
+    currentDocumentUuid.value = localStorage.getItem('currentDocumentUuid') || '';
     // TODO: Bad. Remember sections too.
 
     if (Object.keys(documentsByUuid.value).length === 0) {
@@ -56,19 +76,20 @@ export function installDocumentPlugin(app) {
   };
 
   // TODO: Everything below this point could be separated.
-  const currentSectionUuid = ref(null);
+  const currentSectionUuid = ref<string>('');
 
-  const currentSection = computed(() => currentDocument.value.sections.find((section) => section.uuid === currentSectionUuid.value));
+  const currentSection = computed<DocumentSection>(() => currentDocument.value.sections.find((section) => section.uuid === currentSectionUuid.value)!);
 
-  const setCurrentSectionUuid = (uuid) => {
+  const setCurrentSectionUuid = (uuid: string): void => {
     currentSectionUuid.value = uuid;
   };
 
-  const createNewSection = (title) => {
+  const createNewSection = (title: string): void => {
     const newSection = {
       ...createSection(title),
       // TODO: Seriously reconsider if simply using array indexes would suffice,
       //  because nodes don't have any order property, which would simply be chaotic.
+
       order: currentDocument.value.sections.reduce(
         (highest, section) => (section.order > highest ? section.order : highest),
         0
@@ -98,11 +119,11 @@ export function installDocumentPlugin(app) {
     currentSection,
     setCurrentSectionUuid,
     createNewSection,
-  });
+  } as DocumentPlugin);
 }
 
 // TODO: Do we really still need these functions? Where to put them?
-export function useDocuments() {
-  return inject(documentSymbol);
+export function useDocuments(): DocumentPlugin {
+  return inject<DocumentPlugin>(documentSymbol)!;
 }
 

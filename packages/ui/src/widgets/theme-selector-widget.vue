@@ -17,10 +17,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
+
 import { useTheme } from '@src/plugins';
 
-export default {
+export default defineComponent({
   setup() {
     const { themeClass, themes, setThemeClass } = useTheme();
 
@@ -30,5 +32,5 @@ export default {
       setThemeClass
     };
   }
-};
+});
 </script>

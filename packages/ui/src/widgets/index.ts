@@ -1,3 +1,5 @@
+import { Component } from 'vue';
+
 import documentNavigator from './document-navigator-widget.vue';
 import toolbar from './toolbar-widget.vue';
 import writer from './writer-widget.vue';
@@ -8,7 +10,7 @@ import documentStats from './document-stats-widget.vue';
 import documentExport from './document-export-widget.vue';
 import themeSelector from './theme-selector-widget.vue';
 
-export const widgets = {
+export const widgets: Record<string, Component> = {
   documentNavigator,
   toolbar,
   writer,

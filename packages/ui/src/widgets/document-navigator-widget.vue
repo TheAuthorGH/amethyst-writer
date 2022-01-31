@@ -22,10 +22,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+import { Document } from '@amethyst-writer/document/dist/index';
+
 import { useDocuments } from '@src/plugins';
 
-export default {
+export default defineComponent({
   setup() {
     const {
       currentDocumentUuid,
@@ -34,7 +38,7 @@ export default {
       createNewDocument
     } = useDocuments();
 
-    const getDocumentButtonClasses = (document) => ({
+    const getDocumentButtonClasses = (document: Document) => ({
       'selected': document.uuid === currentDocumentUuid.value
     });
 
@@ -45,7 +49,7 @@ export default {
       createNewDocument
     };
   }
-};
+});
 </script>
 
 <style lang="scss">

@@ -8,13 +8,14 @@
   </div>
 </template>
 
-<script>
-import { ref, watch, computed, toRefs } from 'vue';
-import { parseNodesFromPlainText, renderNodesToPlainText } from '@amethyst-writer/document/dist/index';
+<script lang="ts">
+import { PropType, defineComponent, ref, watch, computed, toRefs } from 'vue';
 
-export default {
+import { Document, parseNodesFromPlainText, renderNodesToPlainText } from '@amethyst-writer/document/dist/index';
+
+export default defineComponent({
   props: {
-    document: { type: Object, required: true },
+    document: { type: Object as PropType<Document>, required: true },
     sectionUuid: { type: String, required: true }
   },
   emits: [ 'nodes-updated' ],
@@ -36,7 +37,7 @@ export default {
 
     updateTextInput();
 
-    const onInput = (value) => {
+    const onInput = (value: string) => {
       textInput.value = value;
 
       // TODO: Maybe some of this could be moved to the document injectable.
@@ -54,7 +55,7 @@ export default {
       onInput
     };
   }
-};
+});
 </script>
 
 <style lang="scss">

@@ -5,13 +5,14 @@
   />
 </template>
 
-<script>
-import { ref, watch } from 'vue';
+<script lang="ts">
+import { defineComponent, ref, watch } from 'vue';
 
-export default {
+export default defineComponent({
   props: {
     nodes: { type: Array, required: true }
   },
+  emits: [ 'nodes-updated' ],
   setup(props, { emit }) {
     const textInput = ref('');
 
@@ -33,7 +34,7 @@ export default {
       textInput
     };
   }
-};
+});
 </script>
 
 <style lang="scss">
