@@ -1,26 +1,9 @@
-import { App, Ref, ComputedRef, ref, computed, readonly, inject } from 'vue';
+import { App, ref, computed, readonly, inject } from 'vue';
 
 import { Document, DocumentSection, createDocument, createSection } from '@amethyst-writer/document';
-import { documentSymbol } from './injection-symbols';
 
-interface DocumentPlugin {
-  documentsByUuid: Ref<Record<string, Document>>,
-  currentDocumentUuid: Ref<string>,
-
-  currentDocument: ComputedRef<Document>,
-  documents: ComputedRef<Document[]>,
-
-  setCurrentDocumentUuid: (uuid: string) => void,
-  updateCurrentDocument: (updates: Partial<Document>) => void,
-  createNewDocument: () => void,
-  loadDocumentsState: () => void,
-
-  currentSectionUuid: Ref<string>,
-  currentSection: ComputedRef<DocumentSection>,
-  setCurrentSectionUuid: (uuid: string) => void,
-  createNewSection: (title: string) => void,
-}
-
+import { documentSymbol } from '@src/plugins/injection-symbols';
+import { DocumentPlugin } from './types';
 
 export function installDocumentPlugin(app: App): void {
   const documentsByUuid = ref<Record<string, Document>>({});
