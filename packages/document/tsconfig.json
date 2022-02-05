@@ -9,6 +9,7 @@
     "declaration": true,
     "moduleResolution": "node",
     "target": "es2019",
+    "strict": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "baseUrl": "."

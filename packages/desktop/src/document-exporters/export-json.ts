@@ -12,7 +12,7 @@ export async function exportDocumentToJson(document: Document) {
     defaultPath: `${document.title}.json`
   });
 
-  if (file.canceled) {
+  if (file.canceled || !file.filePath) {
     return;
   }
 

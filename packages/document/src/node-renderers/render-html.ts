@@ -1,12 +1,12 @@
 // TODO: Why can't we properly use aliases here without breaking other packages?
 import { DocumentNode } from '../document';
 
-const nodeHtmlGenerators: Record<string, (DocumentNode) => string> = {
+const nodeHtmlGenerators: Record<string, (node: DocumentNode) => string> = {
   'title-1': (node) => `<h1>${node.text}</h1>`,
   'title-2': (node) => `<h2>${node.text}</h2>`,
   'paragraph-start': () => '<p>',
   'paragraph-end': () => '</p>',
-  'text': (node) => node.text,
+  'text': (node) => node.text || '',
   'text-emphasis': (node) => `<em>${node.text}</em>`,
 
   'comment': (node) => `<details><summary>Comment</summary> ${node.text}</details>`

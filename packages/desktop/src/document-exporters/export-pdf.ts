@@ -13,9 +13,11 @@ export async function exportDocumentToPdf(document: Document): Promise<void> {
     defaultPath: `${document.title}.pdf`
   });
 
-  if (file.canceled) {
+  if (file.canceled || !file.filePath) {
     return;
   }
+
+  const filePath = file.filePath.toString();
 
   const sectionsHtml = getOrderedSections(document.sections).reduce((html, section) => {
     const nodes = document.nodes.filter((node) => node.sectionUuid === section.uuid);
@@ -84,6 +86,6 @@ export async function exportDocumentToPdf(document: Document): Promise<void> {
       printBackground: true
     });
 
-    await fs.writeFile(file.filePath.toString(), data);
+    await fs.writeFile(filePath, data);
   });
 }

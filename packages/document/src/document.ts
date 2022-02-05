@@ -47,7 +47,7 @@ export function getOrderedSections(sections: DocumentSection[]): DocumentSection
 export function getDocumentWordCount(document: Document): number {
   return document.nodes
     .filter((node) => node.text)
-    .reduce((count, node) => count + node.text.split(' ').filter(Boolean).length, 0);
+    .reduce((count, node) => count + node.text!.split(' ').filter(Boolean).length, 0);
 }
 
 export function getDocumentNodeTypeCount(document: Document, nodeType: string): number {

@@ -5,10 +5,21 @@
   ],
   "compilerOptions": {
     "outDir": "./dist/",
+    "rootDirs": [ "./src", "./tests" ],
     "module": "CommonJS",
     "moduleResolution": "node",
     "target": "es2019",
+    "strict": true,
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
-  }
+    "esModuleInterop": true,
+    "baseUrl": "."
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "./node_modules",
+    "./tests",
+    "./dist"
+  ]
 }
