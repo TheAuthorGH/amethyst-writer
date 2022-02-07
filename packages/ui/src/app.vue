@@ -1,13 +1,6 @@
 <template>
-  <!-- TODO: Allow widget configuration -->
   <widget-container
-    :widgets="[
-      { type: 'documentNavigator', layout: { row: 0, fullWidth: true } },
-      { type: 'toolbar', layout: { row: 1, greedyHeight: true } },
-      { type: 'writer', layout: { row: 1, greedyWidth: true } },
-      { type: 'preview', layout: { row: 1, greedyWidth: true } }
-    ]"
-    :rows="[ {}, { greedyHeight: true } ]"
+    v-bind="configuration.rootWidgetContainer"
     :class="themeClass"
   />
 </template>
@@ -15,8 +8,9 @@
 <script lang="ts" setup>
 import WidgetContainer from './widgets/widget-container.vue';
 
-import { useDocuments, useTheme } from '@src/plugins';
+import { useConfiguration, useDocuments, useTheme } from '@src/plugins';
 
+const { configuration } = useConfiguration();
 const { loadDocumentsState } = useDocuments();
 const { themeClass } = useTheme();
 

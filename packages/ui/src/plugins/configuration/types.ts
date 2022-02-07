@@ -1,3 +1,11 @@
+import { Ref } from 'vue';
+
+export interface ConfigurationPlugin {
+  configuration: Ref<Configuration>;
+  saveConfiguration: () => void;
+  loadConfiguration: () => void;
+}
+
 // TODO: move these to general configuration package
 export interface Configuration {
   rootWidgetContainer: WidgetContainerConfiguration;
