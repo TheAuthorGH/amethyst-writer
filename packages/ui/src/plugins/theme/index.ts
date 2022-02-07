@@ -1,19 +1,19 @@
-import { App, Ref, ref, readonly, inject, watch } from 'vue';
+import { App, ref, readonly, inject, watch } from 'vue';
 
 import { themeSymbol } from '@src/plugins/injection-symbols';
 
 import { Theme, ThemePlugin } from './types';
 import { applyThemeStyles } from './apply-theme-styles';
 
-export function installThemePlugin(app: App): void {
+export function installThemePlugin(app: App) {
   const themeClass = ref('');
   const themes = ref<Theme[]>([]);
 
-  const setThemeClass = (clazz: string): void => {
+  const setThemeClass = (clazz: string) => {
     themeClass.value = clazz;
   };
 
-  const addTheme = (theme: Theme): void => {
+  const addTheme = (theme: Theme) => {
     themes.value = [ ...themes.value, theme ];
   };
 
@@ -29,12 +29,15 @@ export function installThemePlugin(app: App): void {
   // TODO: improve default theme inclusion with configuration package
   setThemeClass('theme--amethyst');
 
-  app.provide(themeSymbol, {
+  const plugin: ThemePlugin = {
     themeClass: readonly(themeClass),
-    themes: readonly(themes),
+    // TODO: Make this readonly
+    themes: themes,
     setThemeClass,
     addTheme
-  } as ThemePlugin);
+  };
+
+  app.provide(themeSymbol, plugin);
 }
 
 export function useTheme(): ThemePlugin {

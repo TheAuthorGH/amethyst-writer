@@ -20,22 +20,8 @@
 <script lang="ts" setup>
 import { DefineComponent } from 'vue';
 
+import { WidgetConfiguration, WidgetRowConfiguration } from '@src/plugins/configuration/types';
 import { widgets } from './index';
-
-// TODO: Move this to general configuration package
-interface WidgetConfiguration {
-  type: string;
-  layout: {
-    row: number;
-    greedyWidth: boolean;
-    fullWidth: boolean;
-  };
-  props: object;
-}
-
-interface WidgetRowConfiguration {
-  greedyHeight: number;
-}
 
 const props = withDefaults(defineProps<{
   widgets: WidgetConfiguration[];
@@ -46,7 +32,7 @@ const props = withDefaults(defineProps<{
 
 const getWidgetComponent = (widget: WidgetConfiguration): DefineComponent => widgets[widget.type];
 
-const getRowWidgets = (rowIndex: number) => props.widgets.filter((widget: any) => widget.layout.row === rowIndex);
+const getRowWidgets = (rowIndex: number) => props.widgets.filter((widget) => widget.layout.row === rowIndex);
 
 const getRowClasses = (row: WidgetRowConfiguration) => ({
   'row--greedy-height': row.greedyHeight

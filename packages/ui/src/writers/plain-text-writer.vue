@@ -29,7 +29,7 @@ const textInput = ref('');
 const documentUuid = computed(() => document.value.uuid);
 
 const updateTextInput = () => {
-  const nodes = document.value.nodes.filter((node: any) => node.sectionUuid === sectionUuid.value);
+  const nodes = document.value.nodes.filter((node) => node.sectionUuid === sectionUuid.value);
   textInput.value = renderNodesToPlainText(nodes);
 };
 

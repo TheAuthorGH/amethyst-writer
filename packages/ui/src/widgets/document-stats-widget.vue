@@ -10,6 +10,7 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
+
 import { getDocumentWordCount, getDocumentNodeTypeCount } from '@amethyst-writer/document/dist';
 
 import { useDocuments } from '@src/plugins';

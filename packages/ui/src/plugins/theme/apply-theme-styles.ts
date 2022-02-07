@@ -1,6 +1,6 @@
 import { Theme } from './types';
 
-export function applyThemeStyles(themes: Theme[]): void {
+export function applyThemeStyles(themes: Theme[]) {
   document.querySelectorAll('.theme-style')
     .forEach((element) => element.remove());
 
