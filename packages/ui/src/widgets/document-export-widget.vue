@@ -12,31 +12,20 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-
+<script lang="ts" setup>
 import { useDocuments } from '@src/plugins';
 
-export default defineComponent({
-  setup() {
-    const { currentDocument } = useDocuments();
+const { currentDocument } = useDocuments();
 
-    const exportToPdf = async () => {
-      // TODO: How to do it without this hack?
-      const document = JSON.parse(JSON.stringify(currentDocument.value));
-      window._amethyst.exportDocument(document, 'pdf');
-    };
+const exportToPdf = async () => {
+  // TODO: How to do it without this hack?
+  const document = JSON.parse(JSON.stringify(currentDocument.value));
+  window._amethyst.exportDocument(document, 'pdf');
+};
 
-    const exportToJson = async () => {
-      // TODO: How to do it without this hack?
-      const document = JSON.parse(JSON.stringify(currentDocument.value));
-      window._amethyst.exportDocument(document, 'json');
-    };
-
-    return {
-      exportToPdf,
-      exportToJson
-    };
-  }
-});
+const exportToJson = async () => {
+  // TODO: How to do it without this hack?
+  const document = JSON.parse(JSON.stringify(currentDocument.value));
+  window._amethyst.exportDocument(document, 'json');
+};
 </script>

@@ -6,23 +6,15 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed } from 'vue';
+<script lang="ts" setup>
+import { computed } from 'vue';
 
 import { useDocuments } from '@src/plugins';
-import { renderNodesToHtml } from '@amethyst-writer/document/dist/index';
+import { renderNodesToHtml } from '@amethyst-writer/document/dist';
 
-export default defineComponent({
-  setup() {
-    const { currentDocument, currentSectionUuid  } = useDocuments();
+const { currentDocument, currentSectionUuid  } = useDocuments();
 
-    const previewHtml = computed(() => renderNodesToHtml(currentDocument.value.nodes.filter((node) => node.sectionUuid === currentSectionUuid.value)));
-
-    return {
-      previewHtml
-    };
-  }
-});
+const previewHtml = computed(() => renderNodesToHtml(currentDocument.value.nodes.filter((node) => node.sectionUuid === currentSectionUuid.value)));
 </script>
 
 <style lang="scss">

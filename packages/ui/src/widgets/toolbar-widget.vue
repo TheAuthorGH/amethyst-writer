@@ -1,7 +1,6 @@
 <template>
   <div class="widget widget--toolbar">
     <!-- TODO: make this configurable -->
-    <!-- TODO: Maybe this should also accept a simple row count object -->
     <widget-container
       :widgets="[
         { type: 'documentMetaEdit', layout: { row: 0, greedyWidth: true } },
@@ -14,6 +13,10 @@
     />
   </div>
 </template>
+
+<script lang="ts" setup>
+import WidgetContainer from './widget-container.vue';
+</script>
 
 <style lang="scss">
 .widget--toolbar {

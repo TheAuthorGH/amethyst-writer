@@ -41,74 +41,56 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed } from 'vue';
+<script lang="ts" setup>
+import { computed } from 'vue';
 
 import { DocumentSection, getOrderedSections } from '@amethyst-writer/document/dist';
 
 import { useDocuments } from '@src/plugins';
 
-export default defineComponent({
-  setup() {
-    const {
-      currentDocument,
-      updateCurrentDocument,
-      createNewSection,
-      currentSectionUuid,
-      currentSection,
-      setCurrentSectionUuid
-    } = useDocuments();
+const {
+  currentDocument,
+  updateCurrentDocument,
+  createNewSection,
+  currentSectionUuid,
+  currentSection,
+  setCurrentSectionUuid
+} = useDocuments();
 
-    const sections = computed(() => getOrderedSections(currentDocument.value.sections));
+const sections = computed(() => getOrderedSections(currentDocument.value.sections));
 
-    const getSectionButtonClasses = (section: DocumentSection) => ({
-      'selected': currentSectionUuid.value === section.uuid
-    });
-
-    const deleteSection = (sectionUuid: string) => {
-      // TODO: Improve warning prompt
-      if (!confirm('Really delete section? All content in section will be lost!')) {
-        return;
-      }
-
-      // TODO: I'm doing this TWICE!!!
-      const remainingSections = currentDocument.value.sections.filter((section) => section.uuid !== sectionUuid);
-
-      setCurrentSectionUuid(remainingSections[0].uuid);
-
-      updateCurrentDocument({
-        nodes: currentDocument.value.nodes.filter((node) => node.sectionUuid !== sectionUuid),
-        sections: remainingSections
-      });
-    };
-
-    const setCurrentSectionTitle = (title: string) => {
-      // TODO: I'm doing this twice!
-      const remainingSections = currentDocument.value.sections.filter((section) => section.uuid !== currentSectionUuid.value);
-
-      updateCurrentDocument({
-        sections: [
-          ...remainingSections,
-          { ...currentSection.value, title }
-        ]
-      });
-    };
-
-    return {
-      // TODO: Make the sorting of these things consistent.
-      currentSectionUuid,
-      setCurrentSectionUuid,
-      currentDocument,
-      currentSection,
-      createNewSection,
-
-      sections,
-      getSectionButtonClasses,
-      deleteSection,
-      setCurrentSectionTitle
-    };
-  }
+const getSectionButtonClasses = (section: DocumentSection) => ({
+  'selected': currentSectionUuid.value === section.uuid
 });
+
+const deleteSection = (sectionUuid: string) => {
+  // TODO: Improve warning prompt
+  if (!confirm('Really delete section? All content in section will be lost!')) {
+    return;
+  }
+
+  // TODO: I'm doing this TWICE!!!
+  const remainingSections = currentDocument.value.sections.filter((section) => section.uuid !== sectionUuid);
+
+  setCurrentSectionUuid(remainingSections[0].uuid);
+
+  updateCurrentDocument({
+    nodes: currentDocument.value.nodes.filter((node) => node.sectionUuid !== sectionUuid),
+    sections: remainingSections
+  });
+};
+
+const setCurrentSectionTitle = (title: string) => {
+  // TODO: I'm doing this twice!
+  const remainingSections = currentDocument.value.sections.filter((section) => section.uuid !== currentSectionUuid.value);
+
+  updateCurrentDocument({
+    sections: [
+      ...remainingSections,
+      { ...currentSection.value, title }
+    ]
+  });
+};
 </script>
 
 <style lang="scss">

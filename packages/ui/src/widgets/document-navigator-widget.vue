@@ -22,33 +22,20 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-
-import { Document } from '@amethyst-writer/document/dist/index';
+<script lang="ts" setup>
+import { Document } from '@amethyst-writer/document/dist';
 
 import { useDocuments } from '@src/plugins';
 
-export default defineComponent({
-  setup() {
-    const {
-      currentDocumentUuid,
-      documents,
-      setCurrentDocumentUuid,
-      createNewDocument
-    } = useDocuments();
+const {
+  currentDocumentUuid,
+  documents,
+  setCurrentDocumentUuid,
+  createNewDocument
+} = useDocuments();
 
-    const getDocumentButtonClasses = (document: Document) => ({
-      'selected': document.uuid === currentDocumentUuid.value
-    });
-
-    return {
-      documents,
-      getDocumentButtonClasses,
-      setCurrentDocumentUuid,
-      createNewDocument
-    };
-  }
+const getDocumentButtonClasses = (document: Document) => ({
+  'selected': document.uuid === currentDocumentUuid.value
 });
 </script>
 

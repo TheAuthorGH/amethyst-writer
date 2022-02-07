@@ -17,20 +17,7 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-
+<script lang="ts" setup>
 import { useTheme } from '@src/plugins';
-
-export default defineComponent({
-  setup() {
-    const { themeClass, themes, setThemeClass } = useTheme();
-
-    return {
-      themeClass,
-      themes,
-      setThemeClass
-    };
-  }
-});
+const { themeClass, themes, setThemeClass } = useTheme();
 </script>

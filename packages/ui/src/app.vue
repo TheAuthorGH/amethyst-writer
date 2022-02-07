@@ -12,22 +12,15 @@
   />
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script lang="ts" setup>
+import WidgetContainer from './widgets/widget-container.vue';
+
 import { useDocuments, useTheme } from '@src/plugins';
 
-export default defineComponent({
-  setup() {
-    const { loadDocumentsState } = useDocuments();
-    const { themeClass } = useTheme();
+const { loadDocumentsState } = useDocuments();
+const { themeClass } = useTheme();
 
-    loadDocumentsState();
-
-    return {
-      themeClass
-    };
-  }
-});
+loadDocumentsState();
 </script>
 
 <style lang="scss">

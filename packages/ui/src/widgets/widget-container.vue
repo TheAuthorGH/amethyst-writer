@@ -17,8 +17,8 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, PropType, defineComponent } from 'vue';
+<script lang="ts" setup>
+import { DefineComponent } from 'vue';
 
 import { widgets } from './index';
 
@@ -37,37 +37,29 @@ interface WidgetRowConfiguration {
   greedyHeight: number;
 }
 
-export default defineComponent({
-  props: {
-    widgets: { type: Array as PropType<WidgetConfiguration[]>, required: true },
-    rows: { type: Array as PropType<WidgetRowConfiguration[]>, default: () => [ { height: 1 } ] }
-  },
-  setup(props) {
-    const getWidgetComponent = (widget: WidgetConfiguration): Component => widgets[widget.type];
-
-    const getRowWidgets = (rowIndex: number) => props.widgets.filter((widget) => widget.layout.row === rowIndex);
-
-    const getRowClasses = (row: WidgetRowConfiguration) => ({
-      'row--greedy-height': row.greedyHeight
-    });
-
-    const getWidgetClasses = (widget: WidgetConfiguration) => {
-      const layoutOptions = widget.layout || {};
-
-      return {
-        'widget--greedy-width': layoutOptions.greedyWidth,
-        'widget--full-width': layoutOptions.fullWidth
-      };
-    };
-
-    return {
-      getWidgetComponent,
-      getWidgetClasses,
-      getRowWidgets,
-      getRowClasses
-    };
-  }
+const props = withDefaults(defineProps<{
+  widgets: WidgetConfiguration[];
+  rows?: WidgetRowConfiguration[];
+}>(), {
+  rows: () => [ { height: 1 } ]
 });
+
+const getWidgetComponent = (widget: WidgetConfiguration): DefineComponent => widgets[widget.type];
+
+const getRowWidgets = (rowIndex: number) => props.widgets.filter((widget: any) => widget.layout.row === rowIndex);
+
+const getRowClasses = (row: WidgetRowConfiguration) => ({
+  'row--greedy-height': row.greedyHeight
+});
+
+const getWidgetClasses = (widget: WidgetConfiguration) => {
+  const layoutOptions = widget.layout || {};
+
+  return {
+    'widget--greedy-width': layoutOptions.greedyWidth,
+    'widget--full-width': layoutOptions.fullWidth
+  };
+};
 </script>
 
 <style lang="scss">

@@ -12,38 +12,27 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed } from 'vue';
+<script lang="ts" setup>
+import { computed } from 'vue';
 
-import { DocumentNode } from '@amethyst-writer/document/dist/index';
+import { DocumentNode } from '@amethyst-writer/document/dist';
 
 import { useDocuments } from '@src/plugins';
 import { writers } from '@src/writers';
 
-export default defineComponent({
-  setup() {
-    const { currentDocument, updateCurrentDocument, currentSectionUuid } = useDocuments();
+const { currentDocument, updateCurrentDocument, currentSectionUuid } = useDocuments();
 
-    // TODO: Make this configurable
-    const writerComponent = computed(() => writers['plainText']);
+// TODO: Make this configurable
+const writerComponent = computed(() => writers['plainText']);
 
-    const updateNodes = (nodes: DocumentNode[]) => {
-      updateCurrentDocument({
-        nodes: [
-          ...currentDocument.value.nodes.filter((node) => node.sectionUuid !== currentSectionUuid.value),
-          ...nodes
-        ]
-      });
-    };
-
-    return {
-      writerComponent,
-      currentDocument,
-      currentSectionUuid,
-      updateNodes
-    };
-  }
-});
+const updateNodes = (nodes: DocumentNode[]) => {
+  updateCurrentDocument({
+    nodes: [
+      ...currentDocument.value.nodes.filter((node) => node.sectionUuid !== currentSectionUuid.value),
+      ...nodes
+    ]
+  });
+};
 </script>
 
 <style lang="scss">

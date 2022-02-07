@@ -11,23 +11,12 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-
+<script lang="ts" setup>
 import { useDocuments } from '@src/plugins';
 
-export default defineComponent({
-  setup() {
-    const { currentDocument, updateCurrentDocument } = useDocuments();
+const { currentDocument, updateCurrentDocument } = useDocuments();
 
-    const updateTitle = (title: string) => {
-      updateCurrentDocument({ title });
-    };
-
-    return {
-      currentDocument,
-      updateTitle
-    };
-  }
-});
+const updateTitle = (title: string) => {
+  updateCurrentDocument({ title });
+};
 </script>

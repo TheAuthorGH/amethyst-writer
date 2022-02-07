@@ -8,54 +8,49 @@
   </div>
 </template>
 
-<script lang="ts">
-import { PropType, defineComponent, ref, watch, computed, toRefs } from 'vue';
+<script lang="ts" setup>
+import { ref, watch, computed, toRefs } from 'vue';
 
-import { Document, parseNodesFromPlainText, renderNodesToPlainText } from '@amethyst-writer/document/dist/index';
+import { Document, DocumentNode, parseNodesFromPlainText, renderNodesToPlainText } from '@amethyst-writer/document/dist';
 
-export default defineComponent({
-  props: {
-    document: { type: Object as PropType<Document>, required: true },
-    sectionUuid: { type: String, required: true }
-  },
-  emits: [ 'nodes-updated' ],
-  setup(props, { emit }) {
-    const { document, sectionUuid } = toRefs(props);
-    const textInput = ref('');
+const props = defineProps<{
+  document: Document;
+  sectionUuid: string;
+}>();
 
-    // TODO: Is this needlessly complicated?
-    const documentUuid = computed(() => document.value.uuid);
+const emit = defineEmits<{
+  (e: 'nodes-updated', value: DocumentNode[]): void
+}>();
 
-    const updateTextInput = () => {
-      const nodes = document.value.nodes.filter((node) => node.sectionUuid === sectionUuid.value);
-      textInput.value = renderNodesToPlainText(nodes);
-    };
+const { document, sectionUuid } = toRefs(props);
+const textInput = ref('');
 
-    watch([ documentUuid, sectionUuid ], () => {
-      updateTextInput();
-    });
+// TODO: Is this needlessly complicated?
+const documentUuid = computed(() => document.value.uuid);
 
-    updateTextInput();
+const updateTextInput = () => {
+  const nodes = document.value.nodes.filter((node: any) => node.sectionUuid === sectionUuid.value);
+  textInput.value = renderNodesToPlainText(nodes);
+};
 
-    const onInput = (value: string) => {
-      textInput.value = value;
-
-      // TODO: Maybe some of this could be moved to the document injectable.
-      emit(
-        'nodes-updated',
-        parseNodesFromPlainText(textInput.value).map((node) => ({
-          ...node,
-          sectionUuid: sectionUuid.value
-        }))
-      );
-    };
-
-    return {
-      textInput,
-      onInput
-    };
-  }
+watch([ documentUuid, sectionUuid ], () => {
+  updateTextInput();
 });
+
+updateTextInput();
+
+const onInput = (value: string) => {
+  textInput.value = value;
+
+  // TODO: Maybe some of this could be moved to the document injectable.
+  emit(
+    'nodes-updated',
+    parseNodesFromPlainText(textInput.value).map((node) => ({
+      ...node,
+      sectionUuid: sectionUuid.value
+    }))
+  );
+};
 </script>
 
 <style lang="scss">
