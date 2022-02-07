@@ -46,6 +46,16 @@ button {
   }
 }
 
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+
+  button:not(:last-child) {
+    margin-right: 0.4rem;
+  }
+}
+
 select {
   padding: 0.6rem 1rem;
   font-size: 1.4rem;

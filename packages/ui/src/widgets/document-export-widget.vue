@@ -2,13 +2,15 @@
   <div class="widget widget--document-export">
     <h3>Export</h3>
 
-    <button @click="exportToPdf()">
-      + PDF
-    </button>
+    <div class="button-group">
+      <button @click="exportToPdf()">
+        + PDF
+      </button>
 
-    <button @click="exportToJson()">
-      + JSON
-    </button>
+      <button @click="exportToJson()">
+        + JSON
+      </button>
+    </div>
   </div>
 </template>
 
