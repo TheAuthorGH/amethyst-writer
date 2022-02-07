@@ -27,6 +27,9 @@ import WidgetContainer from './widget-container.vue';
   box-shadow: var(--box-shadow);
   overflow-y: auto;
 
+  // TODO: Make this configurable or general somehow?
+  max-width: 30rem;
+
   .widget-container .row {
     border-bottom: var(--accent-light) 1px dotted;
     padding-bottom: 0.8rem;
