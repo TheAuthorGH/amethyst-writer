@@ -1,4 +1,4 @@
-import { Document } from '@amethyst-writer/document';
+import { Document } from '@amethyst-writer/document/dist';
 import { IpcMainEvent } from 'electron';
 import { exportDocumentToJson, exportDocumentToPdf } from './document-exporters';
 

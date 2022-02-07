@@ -1,11 +1,11 @@
 import { App, ref, computed, readonly, inject } from 'vue';
 
-import { Document, DocumentSection, createDocument, createSection } from '@amethyst-writer/document';
+import { Document, DocumentSection, createDocument, createSection } from '@amethyst-writer/document/dist';
 
 import { documentSymbol } from '@src/plugins/injection-symbols';
 import { DocumentPlugin } from './types';
 
-export function installDocumentPlugin(app: App): void {
+export function installDocumentPlugin(app: App) {
   const documentsByUuid = ref<Record<string, Document>>({});
   // TODO: Really have this empty string at the start?
   const currentDocumentUuid = ref('');
@@ -13,12 +13,12 @@ export function installDocumentPlugin(app: App): void {
   const documents = computed<Document[]>(() => Object.values(documentsByUuid.value));
   const currentDocument = computed<Document>(() => documentsByUuid.value[currentDocumentUuid.value]);
 
-  const setCurrentDocumentUuid = (uuid: string): void => {
+  const setCurrentDocumentUuid = (uuid: string) => {
     currentDocumentUuid.value = uuid;
     setCurrentSectionUuid(currentDocument.value.sections[0].uuid);
   };
 
-  const updateCurrentDocument = (updates: Partial<Document>): void => {
+  const updateCurrentDocument = (updates: Partial<Document>) => {
     documentsByUuid.value = {
       ...documentsByUuid.value,
       [currentDocumentUuid.value]: { ...currentDocument.value, ...updates }
@@ -28,7 +28,7 @@ export function installDocumentPlugin(app: App): void {
     saveDocumentsState();
   };
 
-  const createNewDocument = (): void => {
+  const createNewDocument = () => {
     const newDocument = createDocument();
 
     documentsByUuid.value = {
@@ -41,12 +41,12 @@ export function installDocumentPlugin(app: App): void {
 
   // TODO: Clean this up
   // TODO: This is not saving the selected section.
-  const saveDocumentsState = (): void => {
+  const saveDocumentsState = () => {
     localStorage.setItem('documentsByUuid', JSON.stringify(documentsByUuid.value));
     localStorage.setItem('currentDocumentUuid', String(currentDocumentUuid.value));
   };
 
-  const loadDocumentsState = (): void => {
+  const loadDocumentsState = () => {
     documentsByUuid.value = JSON.parse(localStorage.getItem('documentsByUuid') || '{}');
     currentDocumentUuid.value = localStorage.getItem('currentDocumentUuid') || '';
     // TODO: Bad. Remember sections too.
@@ -63,11 +63,11 @@ export function installDocumentPlugin(app: App): void {
 
   const currentSection = computed<DocumentSection>(() => currentDocument.value.sections.find((section) => section.uuid === currentSectionUuid.value)!);
 
-  const setCurrentSectionUuid = (uuid: string): void => {
+  const setCurrentSectionUuid = (uuid: string) => {
     currentSectionUuid.value = uuid;
   };
 
-  const createNewSection = (title: string): void => {
+  const createNewSection = (title: string) => {
     const newSection = {
       ...createSection(title),
       // TODO: Seriously reconsider if simply using array indexes would suffice,
@@ -86,8 +86,9 @@ export function installDocumentPlugin(app: App): void {
     setCurrentSectionUuid(newSection.uuid);
   };
 
-  app.provide(documentSymbol, {
-    documentsByUuid: readonly(documentsByUuid),
+  const plugin: DocumentPlugin = {
+    // TODO: Make this readonly
+    documentsByUuid: documentsByUuid,
     currentDocumentUuid: readonly(currentDocumentUuid),
 
     currentDocument,
@@ -102,7 +103,9 @@ export function installDocumentPlugin(app: App): void {
     currentSection,
     setCurrentSectionUuid,
     createNewSection,
-  } as DocumentPlugin);
+  };
+
+  app.provide(documentSymbol, plugin);
 }
 
 // TODO: Do we really still need these functions? Where to put them?

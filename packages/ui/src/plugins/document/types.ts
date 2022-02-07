@@ -1,13 +1,13 @@
-import { ComputedRef, Ref } from 'vue';
+import { Ref } from 'vue';
 
-import { Document, DocumentSection } from '@amethyst-writer/document';
+import { Document, DocumentSection } from '@amethyst-writer/document/dist';
 
 export interface DocumentPlugin {
   documentsByUuid: Ref<Record<string, Document>>,
   currentDocumentUuid: Ref<string>,
 
-  currentDocument: ComputedRef<Document>,
-  documents: ComputedRef<Document[]>,
+  currentDocument: Ref<Document>,
+  documents: Ref<Document[]>,
 
   setCurrentDocumentUuid: (uuid: string) => void,
   updateCurrentDocument: (updates: Partial<Document>) => void,
@@ -15,7 +15,7 @@ export interface DocumentPlugin {
   loadDocumentsState: () => void,
 
   currentSectionUuid: Ref<string>,
-  currentSection: ComputedRef<DocumentSection>,
+  currentSection: Ref<DocumentSection>,
   setCurrentSectionUuid: (uuid: string) => void,
   createNewSection: (title: string) => void,
 }

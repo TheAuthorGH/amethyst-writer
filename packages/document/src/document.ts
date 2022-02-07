@@ -8,6 +8,7 @@ export interface Document {
 }
 
 export interface DocumentNode {
+  // TODO: Use an enum here
   type: string;
   text?: string;
   // TODO: Any way to make this non-optional?
