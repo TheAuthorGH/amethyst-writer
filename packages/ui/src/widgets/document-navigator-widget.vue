@@ -44,7 +44,6 @@ const getDocumentButtonClasses = (document: Document) => ({
   color: var(--accent-light);
   padding: 0.8rem;
   background-color: var(--accent-darker);
-  width: 100%;
   box-shadow: var(--box-shadow);
 
   ul {

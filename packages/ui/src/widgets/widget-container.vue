@@ -66,10 +66,6 @@ const getWidgetClasses = (widget: WidgetConfiguration) => {
     &--greedy-width {
       flex: 1;
     }
-
-    &--full-width {
-      width: 100%;
-    }
   }
 }
 </style>

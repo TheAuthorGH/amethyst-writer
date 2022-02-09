@@ -1,8 +1,8 @@
 {
   "rootWidgetContainer": {
     "widgets": [
-      { "type": "documentNavigator", "layout": { "row": 0, "fullWidth": true } },
-      { "type": "toolbar", "layout": { "row": 1, "greedyHeight": true } },
+      { "type": "documentNavigator", "layout": { "row": 0, "greedyWidth": true } },
+      { "type": "toolbar", "layout": { "row": 1 } },
       { "type": "writer", "layout": { "row": 1, "greedyWidth": true } },
       { "type": "preview", "layout": { "row": 1, "greedyWidth": true } }
     ],
