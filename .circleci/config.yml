@@ -11,5 +11,6 @@ jobs:
           pkg-manager: npm
       - run: npx lerna bootstrap
       - run: npx lerna run lint:js
+      - run: npx lerna run lint:styles
       - run: npx lerna run build
       - run: npx lerna run test
