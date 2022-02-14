@@ -1,6 +1,7 @@
 {
   "rootWidgetContainer": {
     "widgets": [
+      { "type": "openConfigurationEditor", "layout": { "row": 0 } },
       { "type": "documentNavigator", "layout": { "row": 0, "greedyWidth": true } },
       { "type": "toolbar", "layout": { "row": 1 } },
       { "type": "writer", "layout": { "row": 1, "greedyWidth": true } },

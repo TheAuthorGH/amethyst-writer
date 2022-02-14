@@ -2,6 +2,7 @@ import { Ref } from 'vue';
 
 export interface ConfigurationPlugin {
   configuration: Ref<Configuration>;
+  updateConfiguration: (updates: Partial<Configuration>) => void;
   saveConfiguration: () => void;
   loadConfiguration: () => void;
 }

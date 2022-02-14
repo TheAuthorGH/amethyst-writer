@@ -1,5 +1,6 @@
 import { DefineComponent } from 'vue';
 
+import openConfigurationEditor from './open-configuration-editor-widget.vue';
 import documentNavigator from './document-navigator-widget.vue';
 import toolbar from './toolbar-widget.vue';
 import writer from './writer-widget.vue';
@@ -11,6 +12,7 @@ import documentExport from './document-export-widget.vue';
 import themeSelector from './theme-selector-widget.vue';
 
 export const widgets: Record<string, DefineComponent> = {
+  openConfigurationEditor,
   documentNavigator,
   toolbar,
   writer,

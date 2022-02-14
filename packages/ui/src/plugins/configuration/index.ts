@@ -10,6 +10,13 @@ export * from './types';
 export function installConfigurationPlugin(app: App) {
   const configuration = ref(defaultConfiguration as Configuration);
 
+  const updateConfiguration = (updates: Partial<Configuration>) => {
+    configuration.value = {
+      ...configuration.value,
+      ...updates
+    };
+  };
+
   const saveConfiguration = () => {
     // TODO: Instead, send a message and have multiple strategies.
     localStorage.setItem('configuration', JSON.stringify(configuration.value));
@@ -23,6 +30,7 @@ export function installConfigurationPlugin(app: App) {
 
   const plugin: ConfigurationPlugin = {
     configuration,
+    updateConfiguration,
     saveConfiguration,
     loadConfiguration
   };
