@@ -21,6 +21,7 @@ const previewHtml = computed(() => renderNodesToHtml(currentDocument.value.nodes
 .widget--preview {
   display: flex;
   padding: 2.4rem;
+
   // TODO: Pick better colors and use vars.
   background-color: #efe9d9;
   color: #433024;
@@ -69,6 +70,7 @@ const previewHtml = computed(() => renderNodesToHtml(currentDocument.value.nodes
       padding-top: 0.8rem;
       font-family: sans-serif;
       font-size: 1.4rem;
+
       // TODO: Use variable
       color: #777777;
       line-height: 1.4rem;

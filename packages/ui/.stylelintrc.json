@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-html/vue"
+  ],
+  "rules": {
+    "string-quotes": "single",
+    "font-family-name-quotes": "always-unless-keyword",
+    "color-hex-length": "long",
+    "selector-class-pattern": null
+  }
+}

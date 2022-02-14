@@ -66,6 +66,7 @@ const onInput = (value: string) => {
     margin-left: auto;
     margin-right: auto;
     resize: none;
+
     // TODO: Some of these should be general styles.
     font-family: monospace;
   }

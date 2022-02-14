@@ -1,5 +1,7 @@
+@use 'sass:color';
+
 $accent-dark: #3c5148;
-$accent-darker: darken($accent-dark, 9%);
+$accent-darker: color.adjust($accent-dark, $lightness: -9%);
 $accent-light: #a1b4ab;
 
 .theme--botanical {
@@ -8,5 +10,5 @@ $accent-light: #a1b4ab;
   --accent-darker: #{$accent-darker};
   --accent-dark: #{$accent-dark};
   --accent-light: #{$accent-light};
-  --box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  --box-shadow: 0 8px 17px 0 rgb(0 0 0 / 5%), 0 6px 20px 0 rgb(0 0 0 / 10%);
 }
