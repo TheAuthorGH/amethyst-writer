@@ -7,6 +7,9 @@
   },
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": ">=14.18.0"
+  },
   "devDependencies": {
     "lerna": "^4.0.0"
   }

@@ -13,6 +13,9 @@
   },
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": ">=14.18.0"
+  },
   "devDependencies": {
     "@amethyst-writer/document": "^1.0.0",
     "@amethyst-writer/scripts": "^1.0.0",
