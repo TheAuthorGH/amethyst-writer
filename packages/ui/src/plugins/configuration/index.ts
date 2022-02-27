@@ -5,6 +5,8 @@ import { configurationSymbol } from '@src/plugins/injection-symbols';
 import { ConfigurationPlugin, Configuration } from './types';
 import defaultConfiguration from './default-config.json';
 
+export * from './types';
+
 export function installConfigurationPlugin(app: App) {
   const configuration = ref(defaultConfiguration as Configuration);
 

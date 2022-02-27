@@ -5,6 +5,8 @@ import { Document, DocumentSection, createDocument, createSection } from '@ameth
 import { documentSymbol } from '@src/plugins/injection-symbols';
 import { DocumentPlugin } from './types';
 
+export * from './types';
+
 export function installDocumentPlugin(app: App) {
   const documentsByUuid = ref<Record<string, Document>>({});
   // TODO: Really have this empty string at the start?

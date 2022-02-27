@@ -20,7 +20,7 @@
 <script lang="ts" setup>
 import { DefineComponent } from 'vue';
 
-import { WidgetConfiguration, WidgetRowConfiguration } from '@src/plugins/configuration/types';
+import { WidgetConfiguration, WidgetRowConfiguration } from '@src/plugins/configuration';
 import { widgets } from './index';
 
 const props = withDefaults(defineProps<{

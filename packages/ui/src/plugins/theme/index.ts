@@ -5,6 +5,8 @@ import { themeSymbol } from '@src/plugins/injection-symbols';
 import { Theme, ThemePlugin } from './types';
 import { applyThemeStyles } from './apply-theme-styles';
 
+export * from './types';
+
 export function installThemePlugin(app: App) {
   const themeClass = ref('');
   const themes = ref<Theme[]>([]);

@@ -5,9 +5,9 @@
   "main": "./dist/index.js",
   "scripts": {
     "build": "npm run build:themes && webpack --mode=development",
-    "build:themes": "node ./scripts/build-themes.js",
-    "lint:js": "eslint --config node_modules/@amethyst-writer/scripts/eslintrc-vue.json --ext .js,.vue ./src",
-    "fix:js": "eslint --config node_modules/@amethyst-writer/scripts/eslintrc-vue.json --ext .js,.vue ./src --fix",
+    "build:themes": "ts-node ./scripts/build-themes.ts",
+    "lint:js": "eslint --config node_modules/@amethyst-writer/scripts/eslintrc-vue.json --ext .js,.ts,.vue ./src ./scripts",
+    "fix:js": "eslint --config node_modules/@amethyst-writer/scripts/eslintrc-vue.json --ext .js,.ts,.vue ./src ./scripts --fix",
     "lint:styles": "stylelint ./src/**/*.{scss,vue}",
     "fix:styles": "stylelint ./src/**/*.{scss,vue} --fix"
   },
@@ -19,6 +19,7 @@
   "devDependencies": {
     "@amethyst-writer/document": "^1.0.0",
     "@amethyst-writer/scripts": "^1.0.0",
+    "@types/sass": "^1.43.1",
     "@types/webpack-env": "^1.16.3",
     "@typescript-eslint/eslint-plugin": "^5.1.0",
     "@typescript-eslint/parser": "^5.1.0",
@@ -35,6 +36,7 @@
     "stylelint-config-html": "^1.0.0",
     "stylelint-config-standard-scss": "^3.0.0",
     "ts-loader": "^9.2.6",
+    "ts-node": "^10.5.0",
     "typescript": "^4.5.5",
     "vue": "^3.2.29",
     "vue-loader": "^16.8.3",
