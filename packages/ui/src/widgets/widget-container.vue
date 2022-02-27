@@ -27,7 +27,7 @@ const props = withDefaults(defineProps<{
   widgets: WidgetConfiguration[];
   rows?: WidgetRowConfiguration[];
 }>(), {
-  rows: () => [ { height: 1 } ]
+  rows: () => [ {} ]
 });
 
 const getWidgetComponent = (widget: WidgetConfiguration): DefineComponent => widgets[widget.type];
