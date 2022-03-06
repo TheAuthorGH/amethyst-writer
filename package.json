@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Amethyst Writer monorepo",
   "scripts": {
-    "start:desktop": "lerna run start --scope=@amethyst-writer/desktop"
+    "start:desktop": "lerna run start --scope=@amethyst-writer/client-desktop"
   },
   "author": "",
   "license": "ISC",
