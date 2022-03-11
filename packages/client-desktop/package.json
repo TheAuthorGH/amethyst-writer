@@ -6,11 +6,12 @@
   "scripts": {
     "start": "electron dist/index.js",
     "build": "tsc --project ./tsconfig.json && cp src/index.html dist/index.html",
-    "lint:js": "eslint --config node_modules/@amethyst-writer/scripts/eslintrc-ts.json --ext .js,.ts ./src",
-    "fix:js": "eslint --config node_modules/@amethyst-writer/scripts/eslintrc-ts.json --ext .js,.ts ./src --fix",
+    "lint:js": "eslint --config node_modules/@amethyst-writer/scripts/eslintrc-ts.json --ext .js,.ts ./src ./scripts",
+    "fix:js": "eslint --config node_modules/@amethyst-writer/scripts/eslintrc-ts.json --ext .js,.ts ./src ./scripts --fix",
     "package:linux": "npm run build && electron-builder -l",
     "package:windows": "npm run build && electron-builder -w",
-    "package:mac": "npm run build && electron-builder -m"
+    "package:macos": "npm run build && electron-builder -m",
+    "deploy-artifacts": "ts-node scripts/deploy-artifacts.ts"
   },
   "author": {
     "name": "TBD",
@@ -23,12 +24,14 @@
   },
   "dependencies": {
     "@amethyst-writer/document": "1.0.0",
-    "@amethyst-writer/ui": "0.0.1"
+    "@amethyst-writer/ui": "0.0.1",
+    "ts-node": "^10.5.0"
   },
   "devDependencies": {
     "@amethyst-writer/scripts": "1.0.0",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
     "@typescript-eslint/parser": "^5.10.1",
+    "aws-sdk": "^2.1082.0",
     "electron": "^13.2.2",
     "electron-builder": "^22.11.7",
     "eslint": "^8.3.0",
@@ -36,7 +39,7 @@
   },
   "build": {
     "appId": "com.electron.app",
-    "productName": "Amethyst Writer",
+    "productName": "amethyst-writer",
     "directories": {
       "output": "./dist/packages"
     },
@@ -55,7 +58,8 @@
     "win": {
       "target": [
         "portable"
-      ]
+      ],
+      "artifactName": "${productName}-${version}.${ext}"
     },
     "portable": {
       "unicode": false,
